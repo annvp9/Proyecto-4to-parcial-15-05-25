@@ -7,9 +7,9 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/View/registrar_vehiculo.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/registrar_reserva.fxml"));
         stage.setScene(new Scene(root));
-        stage.setTitle("Sistema de Estacionamiento - Registro Vehículo");
+        stage.setTitle("Sistema de Estacionamiento - Registro Reserva");
         stage.show();
     }
 
@@ -17,4 +17,5 @@ public class Main extends Application {
         launch(args);
     }
 }
+
 
