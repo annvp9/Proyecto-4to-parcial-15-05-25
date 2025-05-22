@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane fx:controller="controllers.RegistrarVehiculoController" xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+    <Label text="ID Cliente:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+    <TextField fx:id="txtIdCliente" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+    <Label text="Placa:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+    <TextField fx:id="txtPlaca" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+    <Label text="Marca:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+    <TextField fx:id="txtMarca" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+    <Label text="Modelo:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+    <TextField fx:id="txtModelo" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+    <Label text="Color:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+    <TextField fx:id="txtColor" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+    <Label text="Tipo:" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+    <TextField fx:id="txtTipo" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+    <Button text="Registrar" onAction="#registrarVehiculo" GridPane.rowIndex="6" GridPane.columnIndex="1" />
+    <Label fx:id="lblMensaje" GridPane.rowIndex="7" GridPane.columnIndex="1" />
+</GridPane>
