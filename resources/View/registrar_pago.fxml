@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.GridPane?>
+
+
+<GridPane fx:controller="controllers.RegistrarPagoController" xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+    <Label text="ID Reserva:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+    <TextField fx:id="txtIdReserva" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+    <Label text="Monto:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+    <TextField fx:id="txtMonto" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+    <Label text="Método de pago:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+    <TextField fx:id="txtMetodo" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+    <Label text="Fecha (AAAA-MM-DDTHH:MM):" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+    <TextField fx:id="txtFecha" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+    <Button text="Registrar" onAction="#registrarPago" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+    <Label fx:id="lblMensaje" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+</GridPane>
