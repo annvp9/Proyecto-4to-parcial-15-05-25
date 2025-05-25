@@ -15,6 +15,9 @@ public class Pago {
         this.fechaPago = fechaPago;
     }
 
+    public Pago(int idPago, int idReserva, double monto, String metodoPago, String fechaPago) {
+    }
+
     public int getIdReserva() { return idReserva; }
     public double getMonto() { return monto; }
     public String getMetodoPago() { return metodoPago; }

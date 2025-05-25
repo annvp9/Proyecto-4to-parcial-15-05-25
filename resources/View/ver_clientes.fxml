@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.VerClientesController" spacing="10" alignment="center" prefWidth="600" prefHeight="400">
+    <TableView fx:id="tableClientes" prefWidth="580" prefHeight="350">
+        <columns>
+            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150" />
+            <TableColumn fx:id="colApellido" text="Apellido" prefWidth="150" />
+            <TableColumn fx:id="colCorreo" text="Correo" prefWidth="180" />
+            <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="100" />
+        </columns>
+    </TableView>
+    <Button text="Menú Principal" onAction="#volverAlMenu" prefWidth="200"/>
+</VBox>
+

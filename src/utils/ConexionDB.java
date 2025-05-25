@@ -5,17 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionDB {
-    private static Connection conexion;
-    private static final String URL = "jdbc:mysql://localhost:3306/estacionamiento";
+    private static final String URL = "jdbc:mysql://IP_DEL_SERVIDOR:3306/estacionamiento?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASSWORD = "salchichasfrias";
 
-    private ConexionDB() {}
-
     public static Connection getConexion() throws SQLException {
-        if (conexion == null || conexion.isClosed()) {
-            conexion = DriverManager.getConnection(URL, USER, PASSWORD);
-        }
-        return conexion;
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
+
+

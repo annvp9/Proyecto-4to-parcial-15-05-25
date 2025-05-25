@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="15" alignment="center" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.MainMenuController">
+    <Button text="Registrar Cliente" onAction="#irRegistrarCliente" prefWidth="200"/>
+
+    <Button text="Registrar Vehículo" onAction="#irRegistrarVehiculo" prefWidth="200"/>
+
+    <Button text="Registrar Reserva" onAction="#irRegistrarReserva" prefWidth="200"/>
+    <Button text="Registrar Pago" onAction="#irRegistrarPago" prefWidth="200"/>
+
+    <Button text="Ver Clientes" onAction="#irVerClientes" />
+    <Button text="Ver Vehículos" onAction="#irVerVehiculos" />
+    <Button text="Ver Pagos" onAction="#irVerPagos" />
+    <Button text="Ver Reservas" onAction="#irVerReservas" />
+
+
+</VBox>

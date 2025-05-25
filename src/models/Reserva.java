@@ -19,6 +19,9 @@ public class Reserva {
         this.estado = estado;
     }
 
+    public Reserva(int idReserva, int idCliente, int idEspacio, String fechaInicio, String fechaFin) {
+    }
+
     public int getIdCliente() { return idCliente; }
     public int getIdEspacio() { return idEspacio; }
     public int getIdTarifa() { return idTarifa; }

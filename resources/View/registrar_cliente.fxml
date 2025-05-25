@@ -14,5 +14,9 @@
     <Label text="Dirección:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
     <TextField fx:id="txtDireccion" GridPane.rowIndex="4" GridPane.columnIndex="1" />
     <Button text="Registrar" onAction="#registrarCliente" GridPane.rowIndex="5" GridPane.columnIndex="1" />
-    <Label fx:id="lblMensaje" GridPane.rowIndex="6" GridPane.columnIndex="1" />
+
+    <Button text="Registrar" onAction="#registrarCliente" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+    <Button text="Volver al menú" onAction="#volverAlMenu" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+    <Label fx:id="lblMensaje" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
 </GridPane>
+

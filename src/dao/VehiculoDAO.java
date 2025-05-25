@@ -1,21 +1,42 @@
 package dao;
 
-import models.Vehiculo;
-import utils.ConexionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import models.Vehiculo;
+import utils.ConexionDB;
 
 public class VehiculoDAO {
-    public static void insertarVehiculo(Vehiculo v) throws Exception {
+
+    public static List<Vehiculo> obtenerTodos() throws Exception {
+        List<Vehiculo> vehiculos = new ArrayList<>();
         Connection conn = ConexionDB.getConexion();
-        String sql = "INSERT INTO vehiculos(id_cliente, placa, marca, modelo, color, tipo) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "SELECT id_cliente, placa, marca, modelo, color, tipo FROM vehiculos";
         PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setInt(1, v.getIdCliente());
-        stmt.setString(2, v.getPlaca());
-        stmt.setString(3, v.getMarca());
-        stmt.setString(4, v.getModelo());
-        stmt.setString(5, v.getColor());
-        stmt.setString(6, v.getTipo());
-        stmt.executeUpdate();
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Vehiculo v = new Vehiculo(
+                    rs.getInt("id_cliente"),
+                    rs.getString("placa"),
+                    rs.getString("marca"),
+                    rs.getString("modelo"),
+                    rs.getString("color"),
+                    rs.getString("tipo")
+            );
+            vehiculos.add(v);
+        }
+
+        rs.close();
+        stmt.close();
+        conn.close();
+
+        return vehiculos;
+    }
+
+    public static void insertarVehiculo(Vehiculo v) {
+
     }
 }
