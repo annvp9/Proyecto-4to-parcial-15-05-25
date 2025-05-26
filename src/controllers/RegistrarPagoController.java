@@ -16,13 +16,13 @@ import dao.PagoDAO;
 public class RegistrarPagoController {
 
     @FXML
-    private ComboBox<String> tipoEstacionamientoComboBox; // Temporal o Pensión
+    private ComboBox<String> tipoEstacionamientoComboBox;
     @FXML
-    private TextField horasEstacionadasField; // Para el tiempo temporal
+    private TextField horasEstacionadasField;
     @FXML
-    private TextField metodoPagoField; // Para ingresar el método de pago
+    private TextField metodoPagoField;
 
-    // Método para registrar un pago
+
     @FXML
     public void registrarPago(ActionEvent event) {
         try {
@@ -33,7 +33,6 @@ public class RegistrarPagoController {
                 double horasEstacionadas = Double.parseDouble(horasEstacionadasField.getText());
                 Pago pago = new Pago(tipoEstacionamiento, horasEstacionadas, metodoPago);
 
-                // Insertar pago en la base de datos
                 if (PagoDAO.insertarPago(pago)) {
                     mostrarMensaje("Pago registrado exitosamente", "Monto: $" + pago.getMonto());
                 } else {
@@ -42,7 +41,6 @@ public class RegistrarPagoController {
             } else if ("pension".equalsIgnoreCase(tipoEstacionamiento)) {
                 Pago pago = new Pago(tipoEstacionamiento, metodoPago);
 
-                // Insertar pago en la base de datos
                 if (PagoDAO.insertarPago(pago)) {
                     mostrarMensaje("Pago registrado exitosamente", "Monto mensual: $" + pago.getMonto());
                 } else {
@@ -56,7 +54,6 @@ public class RegistrarPagoController {
         }
     }
 
-    // Mostrar mensaje de éxito
     private void mostrarMensaje(String titulo, String contenido) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(titulo);
@@ -65,7 +62,6 @@ public class RegistrarPagoController {
         alert.showAndWait();
     }
 
-    // Mostrar mensaje de error
     private void mostrarMensajeError(String contenido) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Error");
@@ -74,7 +70,6 @@ public class RegistrarPagoController {
         alert.showAndWait();
     }
 
-    // Método para regresar al menú principal
     @FXML
     public void volverAlMenu(ActionEvent event) {
         try {

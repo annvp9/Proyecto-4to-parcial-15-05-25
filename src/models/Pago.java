@@ -20,7 +20,7 @@ public class Pago {
     public Pago(String tipoEstacionamiento, double horasEstacionadas, String metodoPago) {
     }
 
-    // Getters
+
     public int getIdPago() {
         return idPago;
     }

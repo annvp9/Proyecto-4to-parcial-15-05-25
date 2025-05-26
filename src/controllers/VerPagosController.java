@@ -34,7 +34,7 @@ public class VerPagosController {
 
         ObservableList<Pago> pagos = FXCollections.observableArrayList();
         try {
-            pagos.addAll(PagoDAO.obtenerTodos()); // Aquí se obtiene la lista de pagos
+            pagos.addAll(PagoDAO.obtenerTodos());
         } catch (Exception e) {
             e.printStackTrace();
         }
