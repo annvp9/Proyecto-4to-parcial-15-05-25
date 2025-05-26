@@ -1,29 +1,23 @@
 package models;
 
+import java.time.LocalDate;
+
 public class Pago {
-    private int idPago;
     private int idReserva;
     private double monto;
     private String metodoPago;
     private String tipoEstacionamiento;
-    private String fechaPago;
+    private LocalDate fechaPago;
 
-    public Pago(String metodoPago, String tipoEstacionamiento) {
-        this.idPago = idPago;
+    public Pago(int idReserva, double monto, String metodoPago, String tipoEstacionamiento, LocalDate fechaPago) {
         this.idReserva = idReserva;
-        this.monto = this.monto;
+        this.monto = monto;
         this.metodoPago = metodoPago;
         this.tipoEstacionamiento = tipoEstacionamiento;
         this.fechaPago = fechaPago;
     }
 
-    public Pago(String tipoEstacionamiento, double horasEstacionadas, String metodoPago) {
-    }
-
-
-    public int getIdPago() {
-        return idPago;
-    }
+    // Getters
 
     public int getIdReserva() {
         return idReserva;
@@ -41,9 +35,29 @@ public class Pago {
         return tipoEstacionamiento;
     }
 
-    public String getFechaPago() {
+    public LocalDate getFechaPago() {
         return fechaPago;
     }
+
+    // Setters (opcional)
+
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
+    public void setMetodoPago(String metodoPago) {
+        this.metodoPago = metodoPago;
+    }
+
+    public void setTipoEstacionamiento(String tipoEstacionamiento) {
+        this.tipoEstacionamiento = tipoEstacionamiento;
+    }
+
+    public void setFechaPago(LocalDate fechaPago) {
+        this.fechaPago = fechaPago;
+    }
 }
-
-

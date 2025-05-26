@@ -1,59 +1,51 @@
 package controllers;
 
-import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.Button;
+import dao.ReservaDAO;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-import dao.ReservaDAO;
 import models.Reserva;
+
+import java.util.List;
 
 public class VerReservasController {
 
-    @FXML
-    private TableView<Reserva> tableReservas;
-    @FXML
-    private TableColumn<Reserva, Integer> colIdReserva, colIdCliente, colIdEspacio;
-    @FXML
-    private TableColumn<Reserva, String> colFechaInicio, colFechaFin;
-    @FXML
-    private Button btnMenu;
+    @FXML private TableView<Reserva> tableReservas;
+    @FXML private TableColumn<Reserva, Integer> colIdReserva;
+    @FXML private TableColumn<Reserva, Integer> colIdCliente;
+    @FXML private TableColumn<Reserva, String> colFechaInicio;
+    @FXML private TableColumn<Reserva, String> colFechaFin;
+    @FXML private TableColumn<Reserva, String> colEstado;
 
     @FXML
     public void initialize() {
         colIdReserva.setCellValueFactory(new PropertyValueFactory<>("idReserva"));
         colIdCliente.setCellValueFactory(new PropertyValueFactory<>("idCliente"));
-        colIdEspacio.setCellValueFactory(new PropertyValueFactory<>("idEspacio"));
-        colFechaInicio.setCellValueFactory(new PropertyValueFactory<>("fechaInicio"));
-        colFechaFin.setCellValueFactory(new PropertyValueFactory<>("fechaFin"));
 
-        ObservableList<Reserva> reservas = FXCollections.observableArrayList();
-        try {
-            reservas.addAll(ReservaDAO.obtenerTodos());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        tableReservas.setItems(reservas);
+        colFechaInicio.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getFechaInicio().toString())
+        );
+
+        colFechaFin.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getFechaFin().toString())
+        );
+
+        colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+
+        cargarReservas();
     }
 
-    @FXML
-    public void volverAlMenu(ActionEvent event) {
+    private void cargarReservas() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/View/main_menu.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
+            List<Reserva> lista = ReservaDAO.obtenerTodos();
+            ObservableList<Reserva> data = FXCollections.observableArrayList(lista);
+            tableReservas.setItems(data);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
-

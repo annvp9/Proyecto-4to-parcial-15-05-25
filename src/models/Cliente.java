@@ -6,7 +6,7 @@ public class Cliente {
     private String correoElectronico;
     private String telefono;
     private String direccion;
-    private String contraseña; 
+    private String contraseña;
 
     public Cliente(String nombre, String apellido, String correoElectronico, String telefono, String direccion, String contraseña) {
         this.nombre = nombre;
@@ -34,19 +34,18 @@ public class Cliente {
     }
 
     public String getApellido() {
-        return null;
+        return apellido;
     }
 
     public String getCorreoElectronico() {
-        return "";
+        return correoElectronico;
     }
 
     public String getTelefono() {
-        return "";
+        return telefono;
     }
 
     public String getDireccion() {
-        return null;
+        return direccion;
     }
 }
-

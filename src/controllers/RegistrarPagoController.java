@@ -1,84 +1,81 @@
 package controllers;
 
+import dao.PagoDAO;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.event.ActionEvent;
-import javafx.stage.Stage;
 import models.Pago;
-import dao.PagoDAO;
+
+import java.time.LocalDate;
 
 public class RegistrarPagoController {
 
     @FXML
-    private ComboBox<String> tipoEstacionamientoComboBox;
-    @FXML
-    private TextField horasEstacionadasField;
-    @FXML
-    private TextField metodoPagoField;
-
+    private TextField txtIdReserva;
 
     @FXML
-    public void registrarPago(ActionEvent event) {
+    private TextField txtMonto;
+
+    @FXML
+    private TextField txtMetodoPago;
+
+    @FXML
+    private TextField txtTipoEstacionamiento;
+
+    @FXML
+    private DatePicker dpFechaPago;
+
+    @FXML
+    public void registrarPago() {
         try {
-            String tipoEstacionamiento = tipoEstacionamientoComboBox.getValue();
-            String metodoPago = metodoPagoField.getText();
+            int idReserva = Integer.parseInt(txtIdReserva.getText().trim());
+            double monto = Double.parseDouble(txtMonto.getText().trim());
+            String metodoPago = txtMetodoPago.getText().trim();
+            String tipoEstacionamiento = txtTipoEstacionamiento.getText().trim();
+            LocalDate fechaPago = dpFechaPago.getValue();
 
-            if ("temporal".equalsIgnoreCase(tipoEstacionamiento)) {
-                double horasEstacionadas = Double.parseDouble(horasEstacionadasField.getText());
-                Pago pago = new Pago(tipoEstacionamiento, horasEstacionadas, metodoPago);
+            if (metodoPago.isEmpty() || tipoEstacionamiento.isEmpty() || fechaPago == null) {
+                mostrarAlerta("Error", "Por favor completa todos los campos.");
+                return;
+            }
 
-                if (PagoDAO.insertarPago(pago)) {
-                    mostrarMensaje("Pago registrado exitosamente", "Monto: $" + pago.getMonto());
-                } else {
-                    mostrarMensajeError("No se pudo registrar el pago.");
-                }
-            } else if ("pension".equalsIgnoreCase(tipoEstacionamiento)) {
-                Pago pago = new Pago(tipoEstacionamiento, metodoPago);
+            Pago pago = new Pago(idReserva, monto, metodoPago, tipoEstacionamiento, fechaPago);
 
-                if (PagoDAO.insertarPago(pago)) {
-                    mostrarMensaje("Pago registrado exitosamente", "Monto mensual: $" + pago.getMonto());
-                } else {
-                    mostrarMensajeError("No se pudo registrar el pago.");
-                }
+            boolean exito = PagoDAO.insertarPago(pago);
+
+            if (exito) {
+                mostrarAlerta("Éxito", "Pago registrado correctamente.");
+                limpiarCampos();
             } else {
-                mostrarMensajeError("Seleccione un tipo de estacionamiento válido");
+                mostrarAlerta("Error", "No se pudo registrar el pago.");
             }
         } catch (NumberFormatException e) {
-            mostrarMensajeError("Por favor ingrese un valor válido para las horas.");
+            mostrarAlerta("Error", "ID de reserva y monto deben ser números válidos.");
+        } catch (Exception e) {
+            mostrarAlerta("Error", "Ocurrió un error: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    private void mostrarMensaje(String titulo, String contenido) {
+    private void mostrarAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
-        alert.setContentText(contenido);
+        alert.setContentText(mensaje);
         alert.showAndWait();
     }
 
-    private void mostrarMensajeError(String contenido) {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(contenido);
-        alert.showAndWait();
+    private void limpiarCampos() {
+        txtIdReserva.clear();
+        txtMonto.clear();
+        txtMetodoPago.clear();
+        txtTipoEstacionamiento.clear();
+        dpFechaPago.setValue(null);
     }
 
-    @FXML
-    public void volverAlMenu(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/View/main_menu.fxml"));
-            Stage stage = (Stage) tipoEstacionamientoComboBox.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void volverAlMenu(ActionEvent actionEvent) {
     }
 }

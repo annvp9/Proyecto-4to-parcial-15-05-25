@@ -5,11 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionDB {
-
-    private static final String URL = "jdbc:mysql://IP_DEL_SERVIDOR:3306/estacionamiento?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "salchichasfrias";
-
+    private static final String URL = "jdbc:mysql://localhost:3306/estacionamiento?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+    private static final String USER = "personal";
+    private static final String PASSWORD = "admin123";
 
     public static Connection getConexion() throws SQLException {
         try {
@@ -20,3 +18,6 @@ public class ConexionDB {
         }
     }
 }
+
+
+

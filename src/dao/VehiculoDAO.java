@@ -10,10 +10,11 @@ import utils.ConexionDB;
 
 public class VehiculoDAO {
 
+    // Método para obtener todos los vehículos
     public static List<Vehiculo> obtenerTodos() throws Exception {
         List<Vehiculo> vehiculos = new ArrayList<>();
         Connection conn = ConexionDB.getConexion();
-        String sql = "SELECT id_cliente, placa, marca, modelo, color, tipo FROM vehiculos";
+        String sql = "SELECT * FROM vehiculos";
         PreparedStatement stmt = conn.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
 
@@ -36,7 +37,24 @@ public class VehiculoDAO {
         return vehiculos;
     }
 
-    public static void insertarVehiculo(Vehiculo v) {
+    // Método para insertar un vehículo
+    public static boolean insertarVehiculo(Vehiculo v) throws Exception {
+        Connection conn = ConexionDB.getConexion();
+        String sql = "INSERT INTO vehiculos (id_cliente, placa, marca, modelo, color, tipo) VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement stmt = conn.prepareStatement(sql);
 
+        stmt.setInt(1, v.getIdCliente());
+        stmt.setString(2, v.getPlaca());
+        stmt.setString(3, v.getMarca());
+        stmt.setString(4, v.getModelo());
+        stmt.setString(5, v.getColor());
+        stmt.setString(6, v.getTipo());
+
+        int filas = stmt.executeUpdate();
+
+        stmt.close();
+        conn.close();
+
+        return filas > 0;
     }
 }
