@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Alert?>
 
-<GridPane fx:controller="controllers.RegistrarPagoController" xmlns:fx="http://javafx.com/fxml"
-          alignment="center" hgap="10" vgap="10">
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.RegistrarPagoController" spacing="10" alignment="CENTER">
+    <ComboBox fx:id="tipoEstacionamientoComboBox" prefWidth="200">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="temporal"/>
+                <String fx:value="pension"/>
+            </FXCollections>
+        </items>
+    </ComboBox>
 
-    <Label text="ID Reserva:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-    <TextField fx:id="txtIdReserva" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-    <Label text="Monto:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-    <TextField fx:id="txtMonto" GridPane.rowIndex="1" GridPane.columnIndex="1" />
-    <Label text="Método Pago:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-    <TextField fx:id="txtMetodoPago" GridPane.rowIndex="2" GridPane.columnIndex="1" />
-    <Button text="Registrar Pago" onAction="#registrarPago" GridPane.rowIndex="3" GridPane.columnIndex="1" />
-    <Button text="Menú Principal" onAction="#volverAlMenu" GridPane.rowIndex="4" GridPane.columnIndex="1" />
-    <Label fx:id="lblMensaje" GridPane.rowIndex="5" GridPane.columnIndex="1" />
-</GridPane>
+    <TextField fx:id="horasEstacionadasField" promptText="Horas estacionadas (si es temporal)" prefWidth="200"/>
+    <TextField fx:id="metodoPagoField" promptText="Método de pago" prefWidth="200"/>
+
+    <Button text="Registrar Pago" onAction="#registrarPago" prefWidth="200"/>
+
+    <!-- Botón para volver al menú principal -->
+    <Button text="Volver al Menú" onAction="#volverAlMenu" prefWidth="200"/>
+</VBox>
+
+
+

@@ -1,34 +1,89 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import models.Pago;
+import dao.PagoDAO;
 
 public class RegistrarPagoController {
 
-    @FXML private TextField txtIdReserva, txtMonto, txtMetodoPago;
-    @FXML private Label lblMensaje;
-
     @FXML
-    public void registrarPago() {
+    private ComboBox<String> tipoEstacionamientoComboBox; // Temporal o Pensión
+    @FXML
+    private TextField horasEstacionadasField; // Para el tiempo temporal
+    @FXML
+    private TextField metodoPagoField; // Para ingresar el método de pago
 
-        lblMensaje.setText("Pago registrado con éxito");
+    // Método para registrar un pago
+    @FXML
+    public void registrarPago(ActionEvent event) {
+        try {
+            String tipoEstacionamiento = tipoEstacionamientoComboBox.getValue();
+            String metodoPago = metodoPagoField.getText();
+
+            if ("temporal".equalsIgnoreCase(tipoEstacionamiento)) {
+                double horasEstacionadas = Double.parseDouble(horasEstacionadasField.getText());
+                Pago pago = new Pago(tipoEstacionamiento, horasEstacionadas, metodoPago);
+
+                // Insertar pago en la base de datos
+                if (PagoDAO.insertarPago(pago)) {
+                    mostrarMensaje("Pago registrado exitosamente", "Monto: $" + pago.getMonto());
+                } else {
+                    mostrarMensajeError("No se pudo registrar el pago.");
+                }
+            } else if ("pension".equalsIgnoreCase(tipoEstacionamiento)) {
+                Pago pago = new Pago(tipoEstacionamiento, metodoPago);
+
+                // Insertar pago en la base de datos
+                if (PagoDAO.insertarPago(pago)) {
+                    mostrarMensaje("Pago registrado exitosamente", "Monto mensual: $" + pago.getMonto());
+                } else {
+                    mostrarMensajeError("No se pudo registrar el pago.");
+                }
+            } else {
+                mostrarMensajeError("Seleccione un tipo de estacionamiento válido");
+            }
+        } catch (NumberFormatException e) {
+            mostrarMensajeError("Por favor ingrese un valor válido para las horas.");
+        }
     }
 
+    // Mostrar mensaje de éxito
+    private void mostrarMensaje(String titulo, String contenido) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(contenido);
+        alert.showAndWait();
+    }
+
+    // Mostrar mensaje de error
+    private void mostrarMensajeError(String contenido) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(contenido);
+        alert.showAndWait();
+    }
+
+    // Método para regresar al menú principal
     @FXML
-    public void volverAlMenu() {
+    public void volverAlMenu(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/View/main_menu.fxml"));
-            Stage stage = (Stage) lblMensaje.getScene().getWindow();
+            Stage stage = (Stage) tipoEstacionamientoComboBox.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
-            System.err.println("Error al cargar menú: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
-

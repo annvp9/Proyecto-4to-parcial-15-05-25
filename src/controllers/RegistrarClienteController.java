@@ -15,7 +15,6 @@ public class RegistrarClienteController {
     @FXML
     public void registrarCliente() {
         try {
-            // Lógica de registro aquí...
             lblMensaje.setText("¡Cliente registrado exitosamente!");
         } catch (Exception e) {
             lblMensaje.setText("Error: " + e.getMessage());

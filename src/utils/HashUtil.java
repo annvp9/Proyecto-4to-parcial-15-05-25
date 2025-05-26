@@ -1,19 +1,35 @@
 package utils;
 
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class HashUtil {
-    public static String sha1(String input) {
+
+    public static String hashPassword(String password) {
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-1");
-            byte[] result = md.digest(input.getBytes(StandardCharsets.UTF_8));
+            MessageDigest digest = MessageDigest.getInstance("SHA-1");
+
+            byte[] hashBytes = digest.digest(password.getBytes());
+
             StringBuilder sb = new StringBuilder();
-            for (byte b : result) sb.append(String.format("%02x", b));
+            for (byte b : hashBytes) {
+                sb.append(String.format("%02x", b));
+            }
+
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Error generando hash SHA-1", e);
+            e.printStackTrace();
+            return null;
         }
+    }
+
+    public static boolean verificarPassword(String password, String storedHash) {
+        String hashedPassword = hashPassword(password);
+
+        return storedHash.equals(hashedPassword);
+    }
+
+    public static String sha1(String password) {
+        return null;
     }
 }

@@ -64,6 +64,5 @@ public class MainMenuController {
     }
 
     public void setStage(Stage stage) {
-        // si lo usas, implementa algo aquí
     }
 }

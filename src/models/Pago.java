@@ -1,25 +1,49 @@
 package models;
 
-import java.time.LocalDateTime;
-
 public class Pago {
+    private int idPago;
     private int idReserva;
     private double monto;
     private String metodoPago;
-    private LocalDateTime fechaPago;
+    private String tipoEstacionamiento;
+    private String fechaPago;
 
-    public Pago(int idReserva, double monto, String metodoPago, LocalDateTime fechaPago) {
+    public Pago(String metodoPago, String tipoEstacionamiento) {
+        this.idPago = idPago;
         this.idReserva = idReserva;
-        this.monto = monto;
+        this.monto = this.monto;
         this.metodoPago = metodoPago;
+        this.tipoEstacionamiento = tipoEstacionamiento;
         this.fechaPago = fechaPago;
     }
 
-    public Pago(int idPago, int idReserva, double monto, String metodoPago, String fechaPago) {
+    public Pago(String tipoEstacionamiento, double horasEstacionadas, String metodoPago) {
     }
 
-    public int getIdReserva() { return idReserva; }
-    public double getMonto() { return monto; }
-    public String getMetodoPago() { return metodoPago; }
-    public LocalDateTime getFechaPago() { return fechaPago; }
+    // Getters
+    public int getIdPago() {
+        return idPago;
+    }
+
+    public int getIdReserva() {
+        return idReserva;
+    }
+
+    public double getMonto() {
+        return monto;
+    }
+
+    public String getMetodoPago() {
+        return metodoPago;
+    }
+
+    public String getTipoEstacionamiento() {
+        return tipoEstacionamiento;
+    }
+
+    public String getFechaPago() {
+        return fechaPago;
+    }
 }
+
+

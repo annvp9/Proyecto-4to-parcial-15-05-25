@@ -1,9 +1,9 @@
 package controllers;
 
+import dao.PagoDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.Button;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,13 +14,13 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 import models.Pago;
-import dao.PagoDAO;
+
 
 public class VerPagosController {
 
     @FXML private TableView<Pago> tablePagos;
     @FXML private TableColumn<Pago, Integer> colIdPago, colIdReserva;
-    @FXML private TableColumn<Pago, Double> colMonto;
+    @FXML private TableColumn<Pago, Double> colMonto, colTarifa;
     @FXML private TableColumn<Pago, String> colMetodoPago, colFechaPago;
 
     @FXML
@@ -30,10 +30,11 @@ public class VerPagosController {
         colMonto.setCellValueFactory(new PropertyValueFactory<>("monto"));
         colMetodoPago.setCellValueFactory(new PropertyValueFactory<>("metodoPago"));
         colFechaPago.setCellValueFactory(new PropertyValueFactory<>("fechaPago"));
+        colTarifa.setCellValueFactory(new PropertyValueFactory<>("tarifa"));
 
         ObservableList<Pago> pagos = FXCollections.observableArrayList();
         try {
-            pagos.addAll(PagoDAO.obtenerTodos());
+            pagos.addAll(PagoDAO.obtenerTodos()); // Aquí se obtiene la lista de pagos
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,3 +53,4 @@ public class VerPagosController {
         }
     }
 }
+
