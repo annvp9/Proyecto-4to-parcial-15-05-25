@@ -2,21 +2,24 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.VerPagosController" spacing="15" alignment="center" prefWidth="600" prefHeight="400">
-    <TableView fx:id="tablePagos">
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.VerPagosController"
+      spacing="15"
+      alignment="center"
+      prefWidth="600"
+      prefHeight="400">
+
+    <TableView fx:id="tablePagos" prefWidth="580" prefHeight="350">
         <columns>
-            <TableColumn fx:id="colIdPago" text="ID Pago" />
-            <TableColumn fx:id="colIdReserva" text="ID Reserva" />
-            <TableColumn fx:id="colMonto" text="Monto" />
-            <TableColumn fx:id="colMetodoPago" text="Método de Pago" />
-            <TableColumn fx:id="colFechaPago" text="Fecha de Pago" />
-            <TableColumn fx:id="colTarifa" text="Tarifa" />
+            <TableColumn fx:id="colIdReserva" text="ID Reserva" prefWidth="100"/>
+            <TableColumn fx:id="colMonto" text="Monto" prefWidth="100"/>
+            <TableColumn fx:id="colMetodoPago" text="Método de Pago" prefWidth="140"/>
+            <TableColumn fx:id="colFechaPago" text="Fecha de Pago" prefWidth="140"/>
         </columns>
     </TableView>
 
-    <Button text="Volver al Menú Principal" onAction="#volverAlMenu" />
+    <Button text="Volver al Menú Principal" onAction="#volverAlMenu" prefWidth="200"/>
+
 </VBox>
-
-

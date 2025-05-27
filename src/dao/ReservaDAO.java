@@ -11,7 +11,7 @@ public class ReservaDAO {
 
     public static List<Reserva> obtenerTodos() throws Exception {
         List<Reserva> reservas = new ArrayList<>();
-        String sql = "SELECT id_reserva, id_cliente, fecha_inicio, fecha_fin, estado FROM reservas";
+        String sql = "SELECT id_reserva, id_cliente, fecha_inicio, fecha_fin, estado FROM reservas" ;
         try (Connection conn = ConexionDB.getConexion();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
@@ -31,7 +31,7 @@ public class ReservaDAO {
     }
 
     public static boolean insertarReserva(Reserva reserva) throws Exception {
-        String sql = "INSERT INTO reservas (id_cliente, fecha_inicio, fecha_fin, estado) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO reservas (id_cliente, fecha_inicio, fecha_fin, estado) VALUES (?, ?, ?, ?)" ;
         try (Connection conn = ConexionDB.getConexion();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -45,15 +45,15 @@ public class ReservaDAO {
         }
     }
 
-    public static boolean existeCliente(int idCliente) {
-        String sql = "SELECT 1 FROM clientes WHERE id_cliente = ?";
+    public static boolean existeReserva(int idReserva) {
+        String sql = "SELECT 1 FROM reservas WHERE id_reserva = ?" ;
         try (Connection conn = ConexionDB.getConexion();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, idCliente);
-            try (ResultSet rs = ps.executeQuery()) {
-                return rs.next();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idReserva);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next(); // true si existe
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }

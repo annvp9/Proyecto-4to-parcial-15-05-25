@@ -6,8 +6,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="controllers.RegistrarPagoController"
       spacing="10" alignment="center"
-      prefWidth="400" prefHeight="400"
-      stylesheets="@style.css"
+      prefWidth="400" prefHeight="450"
 >
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
@@ -22,13 +21,13 @@
     <TextField fx:id="txtMonto" promptText="Ingrese el monto"/>
 
     <Label text="Método de pago:"/>
-    <TextField fx:id="txtMetodoPago" promptText="E.g. Tarjeta, Efectivo"/>
+    <TextField fx:id="txtMetodoPago" promptText="Ej. Tarjeta, Efectivo"/>
 
-    <Label text="Tipo de estacionamiento:"/>
-    <TextField fx:id="txtTipoEstacionamiento" promptText="E.g. Carro, Camioneta"/>
+    <Label text="ID Empleado:"/>
+    <TextField fx:id="txtIdEmpleado" promptText="Ingrese el ID del empleado"/>
 
     <Label text="Fecha de pago:"/>
-    <DatePicker fx:id="dpFechaPago"/>
+    <DatePicker fx:id="dateFechaPago"/>
 
     <Button text="Registrar Pago" onAction="#registrarPago" prefWidth="200"/>
     <Button text="Volver al menú" onAction="#volverAlMenu" prefWidth="200"/>
