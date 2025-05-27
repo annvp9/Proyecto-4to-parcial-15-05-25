@@ -25,7 +25,6 @@ public class VerClientesController {
 
     @FXML
     public void initialize() {
-        // ¡IMPORTANTE! Asegúrate de usar los nombres exactos de los getters
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colApellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         colCorreo.setCellValueFactory(new PropertyValueFactory<>("correoElectronico"));
@@ -56,5 +55,3 @@ public class VerClientesController {
         }
     }
 }
-
-

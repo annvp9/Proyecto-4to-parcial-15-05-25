@@ -10,7 +10,6 @@ import utils.ConexionDB;
 
 public class VehiculoDAO {
 
-    // Método para obtener todos los vehículos
     public static List<Vehiculo> obtenerTodos() throws Exception {
         List<Vehiculo> vehiculos = new ArrayList<>();
         Connection conn = ConexionDB.getConexion();
@@ -37,7 +36,6 @@ public class VehiculoDAO {
         return vehiculos;
     }
 
-    // Método para insertar un vehículo
     public static boolean insertarVehiculo(Vehiculo v) throws Exception {
         Connection conn = ConexionDB.getConexion();
         String sql = "INSERT INTO vehiculos (id_cliente, placa, marca, modelo, color, tipo) VALUES (?, ?, ?, ?, ?, ?)";

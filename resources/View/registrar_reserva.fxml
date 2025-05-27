@@ -25,7 +25,7 @@
     <Label text="Estado:"/>
     <TextField fx:id="txtEstado" promptText="Ej. confirmada"/>
 
-    <Label fx:id="lblMensaje" textFill="red" />
+    <Label fx:id="lblMensaje" textFill="green" />
 
     <HBox spacing="20" alignment="CENTER">
         <Button text="Registrar" onAction="#registrarReserva" prefWidth="120"/>

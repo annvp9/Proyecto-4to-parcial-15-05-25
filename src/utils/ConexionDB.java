@@ -9,15 +9,20 @@ public class ConexionDB {
     private static final String USER = "personal";
     private static final String PASSWORD = "admin123";
 
+    private static Connection conexion;
+
+    private ConexionDB() {
+    }
+
     public static Connection getConexion() throws SQLException {
-        try {
-            return DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new SQLException("No se pudo conectar a la base de datos", e);
+        if (conexion == null || conexion.isClosed()) {
+            try {
+                conexion = DriverManager.getConnection(URL, USER, PASSWORD);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new SQLException("No se pudo conectar a la base de datos", e);
+            }
         }
+        return conexion;
     }
 }
-
-
-

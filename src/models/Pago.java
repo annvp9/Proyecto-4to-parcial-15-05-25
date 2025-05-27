@@ -3,13 +3,12 @@ package models;
 import java.time.LocalDateTime;
 
 public class Pago {
-    private int idPago;            // Autoincremental
+    private int idPago;            //autoincremental
     private int idReserva;
     private double monto;
     private String metodoPago;
     private LocalDateTime fechaPago;
 
-    // Constructor para insertar (sin idPago)
     public Pago(int idReserva, double monto, String metodoPago, LocalDateTime fechaPago) {
         this.idReserva = idReserva;
         this.monto = monto;
@@ -17,7 +16,6 @@ public class Pago {
         this.fechaPago = fechaPago;
     }
 
-    // Constructor completo (con idPago)
     public Pago(int idPago, int idReserva, double monto, String metodoPago, LocalDateTime fechaPago) {
         this.idPago = idPago;
         this.idReserva = idReserva;
@@ -25,8 +23,6 @@ public class Pago {
         this.metodoPago = metodoPago;
         this.fechaPago = fechaPago;
     }
-
-    // Getters y setters
 
     public int getIdPago() {
         return idPago;

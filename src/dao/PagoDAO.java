@@ -11,7 +11,6 @@ import java.util.List;
 
 public class PagoDAO {
 
-    // Insertar pago
     public static boolean insertarPago(Pago pago) {
         String sql = "INSERT INTO pagos (id_reserva, monto, metodo_pago, fecha_pago) VALUES (?, ?, ?, ?)";
         try (Connection conn = ConexionDB.getConexion();
@@ -31,7 +30,6 @@ public class PagoDAO {
         }
     }
 
-    // Obtener lista de pagos
     public static List<Pago> obtenerPagos() {
         List<Pago> lista = new ArrayList<>();
         String sql = "SELECT id_pago, id_reserva, monto, metodo_pago, fecha_pago FROM pagos";
